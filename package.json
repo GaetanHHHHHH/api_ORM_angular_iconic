@@ -23,6 +23,10 @@
   },
   "homepage": "https://github.com/GaetanHHHHHH/api_ORM_angular_iconic#readme",
   "dependencies": {
-    "express": "^4.18.1"
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.19.0"
   }
 }
