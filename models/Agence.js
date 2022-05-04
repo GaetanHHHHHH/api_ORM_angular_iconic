@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     phone: DataTypes.INTEGER,
     localization: DataTypes.STRING
   }, {
+    freezeTableName: true,
     sequelize,
     modelName: 'Agence',
   });

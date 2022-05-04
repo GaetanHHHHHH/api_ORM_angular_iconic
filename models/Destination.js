@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     country: DataTypes.STRING,
     description: DataTypes.STRING
   }, {
+    freezeTableName: true,
     sequelize,
     modelName: 'Destination',
   });
