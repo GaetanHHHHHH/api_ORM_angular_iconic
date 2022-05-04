@@ -8,6 +8,13 @@ const path = require('path');
 // Instantiate server
 var server = express();
 
+// Handlebars
+server.engine('handlebars', expresshbs.engine({ defaultLayout: 'main' }));
+server.set('view engine', 'handlebars');
+
+// Set static folder
+server.use(express.static(path.join(__dirname, 'public')));
+
 // Test
 sequelize.authenticate()
     .then(() => console.log("Database connected"))
@@ -18,11 +25,9 @@ server.use(bodyParser.urlencoded({extended: true}));
 server.use(bodyParser.json());
 
 // Configure routes
-server.get('/', function (req, res) {
-    res.setHeader('Content-Type', 'text/html');
-    res.status(200).send('<h1>Bienvenue sur mon serveur</h1>');
-});
-
+    // Index route
+server.get('/', (req, res) => res.render('index', { layout: 'landing' }));
+    // Destinations route
 server.use('/destinations', require('./routes/destinations'));
 
 // Lauch server

@@ -11,17 +11,21 @@ var dest = models.Destination;       // the model keyed by its name
 router.get('/', (req, res) => 
     dest.findAll()
         .then(destinations => {
-            console.log(destinations)
-            res.sendStatus(200)
+            res.render('destinations', {
+                destinations
+            })
         })
         .catch(err => console.log(err)));
 
+// Display add destination form
+router.get('/add', (req, res) => res.render('add'));
+
 // Add a destination
-router.get('/add', (req, res) => {
+router.post('/add', (req, res) => {
     const data = {
-        name: 'Looking for a holiday special',
-        country: 'Belgium',
-        description: 'Please I need a vacation'
+        name: 'Nice cottage at home',
+        country: 'UK',
+        description: 'Youll be fine'
     }
 
     let { name, country, description } = data;
