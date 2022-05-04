@@ -1,0 +1,28 @@
+{
+  "name": "api_orm_angular_iconic",
+  "version": "1.0.0",
+  "description": "Serveur HTTP pour API REST",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GaetanHHHHHH/api_ORM_angular_iconic.git"
+  },
+  "keywords": [
+    "server",
+    "http",
+    "api",
+    "rest"
+  ],
+  "author": "Gaëtan Herinne",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GaetanHHHHHH/api_ORM_angular_iconic/issues"
+  },
+  "homepage": "https://github.com/GaetanHHHHHH/api_ORM_angular_iconic#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
