@@ -1,9 +1,13 @@
 // Imports
 var express = require('express');
+var bodyParser = require('body-parser');
 
 // Instantiate server
 var server = express();
 
+// Body parser configuration
+server.use(bodyParser.urlencoded({extended: true}));
+server.use(bodyParser.json());
 
 // Configure routes
 server.get('/', function (req, res) {
