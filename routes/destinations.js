@@ -9,9 +9,6 @@ var dest = models.Destination;       // the model keyed by its name
 const link = sequelize.define('Agence_Destination', {}, {freezeTableName: true}, { timestamps: false });
 
 
-
-// Get destinations list
-
 // router.get('/', (req, res) => 
 //     dest.findAll()
 //         .then(destinations => {
@@ -21,6 +18,8 @@ const link = sequelize.define('Agence_Destination', {}, {freezeTableName: true},
 //         })
 //         .catch(err => console.log(err)));
 
+
+// Get destinations list
 router.get('/', (req, res) =>
     dest.findAll()
         .then(destinations => {
@@ -42,16 +41,13 @@ router.get('/', (req, res) =>
             // res.json(dests.context)
         })
         .catch(err => res.status(500).json({ message: err }))
-
 );
 
 
-// Return a destination with the id
+// Get a destination's infos with the id
 router.get('/id=:destId',(req,res)=>{
     destId = req.params.destId;
-
     //TODO: get the agencies with a request to /search/id=destId
-
     dest.findByPk(destId)
         .then( destination => {
             const dest = {
@@ -71,10 +67,10 @@ router.get('/id=:destId',(req,res)=>{
    
 });
 
+
 // delete destination
 router.delete('/id=:destId',(req,res)=>{
     destId = req.params.destId;
-    
     // Delete all links
     link.destroy({
         where: {
@@ -93,22 +89,18 @@ router.delete('/id=:destId',(req,res)=>{
     ).catch(err => {
         res.status(500).json({message: err.message})
     })  
-
 });
 
 
 // Add a new destination
 router.post('/add',(req, res) => {
-    
     let {name, description, country} = req.body;
     console.log(req.body);
     let errors = [];
-
     // validate fields
     if(!name){errors.push({text: "no name"})};
     if(!description){errors.push({text: "no description"})};
     if(!country){errors.push({text: "no country"})};
-
     //check for errors
     if(errors.length != 0){
         res.render('add',{
@@ -124,10 +116,7 @@ router.post('/add',(req, res) => {
             description,
             country
         })
-
-
             // .then(destinations => res.redirect('/destinations')) 
-            
             // .then(res.json({message: "destination added"}))
             .then(dest =>{
                 res.setHeader('Content-Type', 'application/json');
@@ -136,7 +125,6 @@ router.post('/add',(req, res) => {
             .catch(err => res.status(500).json({message: err})) 
         }   
     }
-    
 );
 
 
