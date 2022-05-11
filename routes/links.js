@@ -6,7 +6,27 @@ const { sequelize } = require('../models');
 
 var models = require('../models'); // loads index.js
 var dest = models.Destination;       // the model keyed by its name
-const link = sequelize.define('Agence_Destination', {}, {freezeTableName: true}, { timestamps: false });
+var link = sequelize.define('Agence_Destination', {}, {freezeTableName: true}, { timestamps: false });
+
+
+// GET a list of all links
+router.get('/',(req, res) => {
+    link.findAll()    
+    .then(links => {
+        const linkies = {
+            context: links.map(data =>{
+                return{
+                    id: data.id,
+                    destinationId: data.destinationId,
+                    agenceId: data.agenceId
+                }
+            })
+        }
+        res.json({links: linkies.context});
+        // res.render('links',{links: linkies.context})
+    })
+    .catch(err => res.status(500).json({message: err})) 
+});
 
 
 // Add a new link
@@ -35,6 +55,39 @@ router.post('/add',(req, res) => {
         }   
     }
 );
+
+
+// Return a link with the id
+router.get('/id=:linkId',(req,res)=>{
+    linkId = req.params.linkId;
+    // console.log(agenId)
+    link.findByPk(linkId)
+        .then( data => {
+            const linkie = {
+                context: {                    
+                    // id: data.id,
+                    destinationId: data.destinationId,
+                    agenceId: data.agenceId
+                }
+            }
+            res.json(linkie.context)
+        })
+        .catch(err => res.status(500).json({message: err}));
+});
+
+
+// delete link
+router.delete('/id=:linkId',(req,res)=>{
+    linkId = req.params.linkId;
+    link.destroy({
+        where: {id: linkId}
+    }).then( data =>{
+        res.json({message: "link deleted"});
+    }).catch(err => {
+        res.status(500).json({message: err.message})
+    })
+
+});
 
 
 
