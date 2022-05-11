@@ -2,11 +2,12 @@ const { Router } = require('express');
 const express = require('express');
 const router = express.Router();
 const { sequelize } = require('../models');
+var DataTypes = require('sequelize/lib/data-types');
 //const dest = require('../models/Destination');
 
 var models = require('../models'); // loads index.js
 var dest = models.Destination;       // the model keyed by its name
-var link = sequelize.define('Agence_Destination', {}, {freezeTableName: true}, { timestamps: false });
+var link = sequelize.define('Agence_Destination', {destinationId: DataTypes.INTEGER, agenceId: DataTypes.INTEGER}, {freezeTableName: true}, { timestamps: false });
 
 
 // GET a list of all links
@@ -45,9 +46,10 @@ router.post('/add',(req, res) => {
         })
     } else{
         //insert into table
+        console.log(destinationId, agenceId);
         link.create({
-            destinationId, 
-            agenceId
+            "destinationId":1, 
+            "agenceId":2
         })
             // .then(linkes => res.redirect('/links'))
             .then(res.json({message: "link added"})) 
