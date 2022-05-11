@@ -11,14 +11,11 @@ const link = sequelize.define('Agence_Destination', {}, {freezeTableName: true},
 
 // Add a new link
 router.post('/add',(req, res) => {
-
     let {destinationId, agenceId} = req.body;
     let errors = [];
-
     // validate fields
     if(!destinationId){errors.push({text: "no dest id"})};
     if(!agenceId){errors.push({text: "no agen id"})};
-
     //check for errors
     if(errors.length != 0){
         res.json({
@@ -37,8 +34,8 @@ router.post('/add',(req, res) => {
             .catch(err => console.log(err))
         }   
     }
-    
-    
 );
+
+
 
 module.exports = router;
