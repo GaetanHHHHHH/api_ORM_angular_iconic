@@ -29,6 +29,7 @@ server.use(bodyParser.json());
 server.get('/', (req, res) => res.render('index', { layout: 'landing' }));
     // Destinations route
 server.use('/destinations', require('./routes/destinations'));
+server.use('/links', require('./routes/links'));
 
 // Lauch server
 server.listen(8080, function() {
