@@ -49,22 +49,23 @@ router.get('/id=:destId',(req,res)=>{
     destId = req.params.destId;
     //TODO: get the agencies with a request to /search/id=destId
     dest.findByPk(destId)
-        .then( destination => {
-            const dest = {
-                context: {                    
-                    // id: destination.id,
-                    name: destination.name,
-                    description: destination.description,
-                    country: destination.country
-                }
-            }
+        .then( destination => 
+            // {
+            // const dest = {
+            //     context: {                    
+            //         id: destination.id,
+            //         name: destination.name,
+            //         description: destination.description,
+            //         country: destination.country
+            //     }
+            // }
             res.json(dest.context)
             // res.render('destinations',{
             //     destinations: [dest.context]
             // });
-        })
+        // }
+        )
         .catch(err => res.status(500).json({message: err}));
-   
 });
 
 

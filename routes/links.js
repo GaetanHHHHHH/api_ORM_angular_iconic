@@ -48,8 +48,8 @@ router.post('/add',(req, res) => {
         //insert into table
         console.log(destinationId, agenceId);
         link.create({
-            "destinationId":1, 
-            "agenceId":2
+            destinationId, 
+            agenceId
         })
             // .then(linkes => res.redirect('/links'))
             .then(res.json({message: "link added"})) 
