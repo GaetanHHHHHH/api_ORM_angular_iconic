@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "tragency",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

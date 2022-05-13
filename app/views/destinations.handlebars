@@ -1,0 +1,17 @@
+<section id="destinations" class="container">
+    <h1>Destinations</h1>
+    {{#each destinations}}
+    {{!-- <a href="/"> --}}
+        <div class="gig">
+        <h3>{{dataValues.name}} - {{dataValues.country}}</h3>
+        <p>{{dataValues.description}}</p>
+        </div>
+    {{!-- </a> --}}
+    {{else}}
+        <p>No destination available</p>
+    {{/each}}
+    
+    
+
+
+</section>

@@ -1,0 +1,77 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Edit a destination
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" >
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Edit a destination</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card *ngIf="Destination.name else noDestination">
+    <ion-card-header>
+      <ion-card-title>{{Destination.name}} </ion-card-title>
+      <ion-card-subtitle color="dark"> {{Destination.country}} </ion-card-subtitle>
+    </ion-card-header>
+    
+  
+    <ion-card-content> 
+      
+      {{Destination.description}}
+      <ion-item>
+        <ion-button color="warning" fill="outline" slot="start" type="submit" (click)="editDestination()" >Edit</ion-button>
+        <ion-button color="danger" fill="outline" slot="start" type="submit" (click)="deleteDestination(destId)" >Delete</ion-button>
+      </ion-item>
+    </ion-card-content>
+
+    <ion-item >
+      <ion-card-title *ngIf="Agencies.length != 0 else noAgency">List of agencies :</ion-card-title>
+      <ng-template #noAgency>
+        <ion-card-title>No agency for this destination yet</ion-card-title> 
+      </ng-template>
+
+      
+    </ion-item>
+
+
+    <ion-card *ngFor="let element of Agencies" color="light">
+      <ion-card-header>
+        <ion-card-title>{{element.name}} </ion-card-title>
+      </ion-card-header>
+      <ion-item color="light" text-wrap>
+        <ion-label color="medium">
+          Localization: {{element.localization}} <br>
+          Phone: {{element.phone}} <br>
+          Email: {{element.email}}
+
+        </ion-label>
+
+      <ion-button color="danger" fill="outline" slot="end" type="submit" (click)="deleteLink(element.link_id)">Delete</ion-button>
+      </ion-item>
+      
+    </ion-card>
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="agencyId" id="input" placeholder="agency Id"></ion-input>
+        <ion-button slot="start" color="success" fill="outline" type="submit" (click)="linkAgency()">
+          Link Agency
+        </ion-button>
+        
+      
+
+    </ion-item>
+      
+      
+    
+  </ion-card>
+  <ng-template #noDestination>
+    <ion-card >
+      <ion-card-title>No destination chosen</ion-card-title>
+    </ion-card>
+  </ng-template>
+  
+</ion-content>

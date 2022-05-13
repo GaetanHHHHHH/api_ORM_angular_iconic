@@ -1,0 +1,7 @@
+{
+  "name": "tragency",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
