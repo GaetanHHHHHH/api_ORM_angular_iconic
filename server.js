@@ -4,6 +4,7 @@ var expresshbs = require('express-handlebars');
 var bodyParser = require('body-parser');
 const { sequelize } = require('./app/models');
 const path = require('path');
+const cors = require('cors');
 
 // Instantiate server
 var server = express();
@@ -27,7 +28,7 @@ server.use(bodyParser.json());
 // Configure routes
     // Index route
 //server.get('/', (req, res) => res.render('index', { layout: 'landing' }));
-app.get("/", (req, res) => {
+server.get("/", (req, res) => {
     res.redirect('/destinations')
   });
     // All routes
@@ -41,7 +42,6 @@ const allowedOrigins = [
     'capacitor://localhost',
     'ionic://localhost',
     'http://localhost',
-    'http://localhost:8080',
     'http://localhost:8100',
   ];
   
@@ -57,7 +57,7 @@ const allowedOrigins = [
   };
   
   // Enable preflight requests for all routes
-  app.options('*', cors(corsOptions));
+  server.options('*', cors(corsOptions));
 
 
 // Lauch server
