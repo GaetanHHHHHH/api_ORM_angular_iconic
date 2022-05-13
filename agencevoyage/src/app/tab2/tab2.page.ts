@@ -38,7 +38,7 @@ export class Tab2Page {
   };
 
   onSubmit() {
-    const url = 'http://localhost:3000/destinations/add';
+    const url = 'http://localhost:8080/destinations/add';
     const params = {};
     const headers = {"Content-Type": "application/json",'accept': 'application/json'};
     const data = JSON.stringify(this.destForm,this.getCircularReplacer())

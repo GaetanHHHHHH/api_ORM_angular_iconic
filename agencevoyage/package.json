@@ -1,5 +1,5 @@
 {
-  "name": "tragency",
+  "name": "agencevoyage",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
@@ -28,6 +28,8 @@
     "@capacitor/status-bar": "1.0.8",
     "@ionic/angular": "^6.0.0",
     "cordova-plugin-advanced-http": "^3.3.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
     "postgres": "^3.1.0",
@@ -48,6 +50,7 @@
     "@angular/language-service": "~13.2.2",
     "@capacitor/cli": "3.5.0",
     "@ionic/angular-toolkit": "^6.0.0",
+    "@ionic/lab": "3.2.12",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.20.50",

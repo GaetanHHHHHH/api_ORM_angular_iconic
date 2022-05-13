@@ -54,8 +54,8 @@ export class Tab3Page {
   };
 
   getData(): Promise<void> {
-    const url1 = `http://localhost:3000/destinations/id=${this.destId}`;
-    const url2 = `http://localhost:3000/agencies/search/id=${this.destId}`;
+    const url1 = `http://localhost:8080/destinations/id=${this.destId}`;
+    const url2 = `http://localhost:8080/agencies/search/id=${this.destId}`;
     const params = {};
     const headers = {};
     
@@ -70,7 +70,7 @@ export class Tab3Page {
   }
 
   deleteDestination(destId){
-    const url = `http://localhost:3000/destinations/id=${this.destId}`
+    const url = `http://localhost:8080/destinations/id=${this.destId}`
 
     this.http.delete(url).subscribe((response) => {
       this.router.navigate(['/tabs/tab1'])
@@ -78,13 +78,13 @@ export class Tab3Page {
   }
 
   deleteLink(linkId){
-    const url = `http://localhost:3000/links/id=${linkId}`
+    const url = `http://localhost:8080/links/id=${linkId}`
     this.http.delete(url).subscribe((response) => {this.doRefresh()})
   }
 
 
   linkAgency(): Promise<void>{
-    const url = `http://localhost:3000/links/add`
+    const url = `http://localhost:8080/links/add`
     const newLink = {
       destination_id: this.destId,
       agency_id: parseInt(this.agencyId)

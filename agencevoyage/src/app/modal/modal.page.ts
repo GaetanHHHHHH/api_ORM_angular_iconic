@@ -50,7 +50,7 @@ export class ModalPage implements OnInit {
   };
 
   onSubmit() {
-    const url = `http://localhost:3000/destinations/id=${this.Destination.id}`;
+    const url = `http://localhost:8080/destinations/id=${this.Destination.id}`;
     const params = {};
     const headers = {"Content-Type": "application/json",'accept': 'application/json'};
     const data = JSON.stringify(this.destForm,this.getCircularReplacer())

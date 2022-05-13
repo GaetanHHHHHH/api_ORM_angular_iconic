@@ -18,7 +18,7 @@ export class Tab1Page {
     this.getData()
   }
   getData(): Promise<void> {
-    const url = 'http://localhost:3000/destinations';
+    const url = 'http://localhost:8080/destinations';
     const params = {};
     const headers = {};
     
@@ -37,7 +37,7 @@ export class Tab1Page {
     this.router.navigate(['/tabs/tab3',destId])
   }
   deleteDestination(destId){
-    const url = `http://localhost:3000/destinations/id=${destId}`
+    const url = `http://localhost:8080/destinations/id=${destId}`
 
     this.http.delete(url).subscribe((response) => {
       this.router.navigate(['/tabs/tab1'])
