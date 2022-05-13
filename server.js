@@ -2,7 +2,7 @@
 var express = require('express');
 var expresshbs = require('express-handlebars');
 var bodyParser = require('body-parser');
-const { sequelize } = require('./models');
+const { sequelize } = require('./app/models');
 const path = require('path');
 
 // Instantiate server
@@ -26,11 +26,39 @@ server.use(bodyParser.json());
 
 // Configure routes
     // Index route
-server.get('/', (req, res) => res.render('index', { layout: 'landing' }));
-    // All route
-server.use('/destinations', require('./routes/destinations'));
-server.use('/links', require('./routes/links'));
-server.use('/agences', require('./routes/agences'));
+//server.get('/', (req, res) => res.render('index', { layout: 'landing' }));
+app.get("/", (req, res) => {
+    res.redirect('/destinations')
+  });
+    // All routes
+server.use('/destinations', require('./app/routes/destinations'));
+server.use('/links', require('./app/routes/links'));
+server.use('/agences', require('./app/routes/agences'));
+
+
+// allow urls
+const allowedOrigins = [
+    'capacitor://localhost',
+    'ionic://localhost',
+    'http://localhost',
+    'http://localhost:8080',
+    'http://localhost:8100',
+  ];
+  
+  // Reflect the origin if it's in the allowed list or not defined (cURL, Postman, etc.)
+  const corsOptions = {
+    origin: (origin, callback) => {
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Origin not allowed by CORS'));
+      }
+    },
+  };
+  
+  // Enable preflight requests for all routes
+  app.options('*', cors(corsOptions));
+
 
 // Lauch server
 server.listen(8080, function() {
